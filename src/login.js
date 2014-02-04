@@ -21,8 +21,8 @@ function password(req, res, test) {
     grant_type: "password",
     client_id: req.tokens.SALESFORCE_CLIENT_ID,
     client_secret: req.tokens.SALESFORCE_CLIENT_SECRET,
-    username: req.query.username || req.body.query.username,
-    password: req.query.password || req.body.query.password,
+    username: req.query.username || req.body.username,
+    password: req.query.password || req.body.password,
   }
 
   var protocol = "https://";
@@ -31,12 +31,12 @@ function password(req, res, test) {
   var loginServer = req.body.login_server || req.query.login_server || "login.salesforce.com";
   var url = protocol + loginServer + "/services/oauth2/token";
 
-  request.post(url)
+  var r = request.post(url)
   .type("application/x-www-form-urlencoded")
   .send(options)
   .on("error", onError)
   .end(function(sfRes){
-    if(sfRes.error) return onError(sfRes.error);
+    if(sfRes.error) return onError(sfRes.error + " " + JSON.stringify(sfRes.body) );
     if(!req.session.logins) req.session.logins = {};
     req.session.logins["salesforce"] = sfRes.body;
     res.send(200)

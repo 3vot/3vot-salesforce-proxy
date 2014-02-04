@@ -17,10 +17,9 @@ describe('Controller', function(){
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.session({secret: "abc"}));
     app.use(app.router);
 
-    Login(app,{route: "/login/salesforce"});
+    Login(app,{route: "/login"});
 
     http.createServer(app).listen(app.get('port'), function(){
       console.log('Express server listening on port ' + app.get('port'));
@@ -30,9 +29,9 @@ describe('Controller', function(){
   
   it('should login with password', function(done){
     this.timeout(9000);
-    request.get("http://localhost:4000/login/salesforce/password")
-    .query( { profile: "3vot", provider: "salesforce_test" } )
-    .send( { username: "one.dev@3vot.com", password: "monomono" } )
+    request.post("http://localhost:4000/login/salesforce_sandbox/password")
+    .query( { profile: "3vot" } )
+    .send( { username: "dev.one@3vot.com", password: "password" } )
     .on('error', function(error){ console.log("error" ); })
     .end( function(res){
       if( res.error ){ res.error.should.equal(null); return console.log(res.error); done(); }

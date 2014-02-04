@@ -22,20 +22,19 @@ describe('Controller Functions', function(){
 
       app.use(express.bodyParser());
       app.use(express.methodOverride());
-          app.use(express.session({secret: "abc"}));
       app.use(app.router);
 
-      app.post("/services/data/v28.0/sobjects/Account/", function(res,res){ res.send( { "status": "ok" } ) } );
+      app.post("/services/data/v29.0/sobjects/Account/", function(res,res){ res.send( { "status": "ok" } ) } );
 
-      app.patch("/services/data/v28.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
+      app.patch("/services/data/v29.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
 
-      app.get("/services/data/v28.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
+      app.get("/services/data/v29.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
 
-      app.del("/services/data/v28.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
+      app.del("/services/data/v29.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
 
-      app.get("/services/data/v28.0/query", function(res,res){ res.send( { "status": "ok" } ) } );
+      app.get("/services/data/v29.0/query", function(res,res){ res.send( { "status": "ok" } ) } );
 
-      app.get("/services/data/v28.0/search", function(res,res){ res.send( { "status": "ok" } ) } );
+      app.get("/services/data/v29.0/search", function(res,res){ res.send( { "status": "ok" } ) } );
 
       http.createServer(app).listen(app.get('port'), function(){
         console.log('Express server listening on port ' + app.get('port'));
@@ -171,24 +170,3 @@ describe('Controller Functions', function(){
   });
   
 });
-  /* 
-
-  describe('req', function(){
-    describe('.xhr', function(){
-      it('should return true when X-Requested-With is xmlhttprequest', function(done){
-        var app = express();
-
-        Controller( app,  { route: "/salesforce" } );
-
-        request(app)
-        .get('/salesforce/Account/1')
-        .end(function(error, res){
-        
-          console.log(arguments)
-          done();
-        });
-      });
-    });
-  });
-
-*/

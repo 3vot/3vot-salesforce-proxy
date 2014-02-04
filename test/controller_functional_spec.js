@@ -19,22 +19,21 @@ describe('Controller', function(){
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-        app.use(express.session({secret: "abc"}));
     app.use(app.router);
 
     Controller(app, {route: "/salesforce"} );
 
-    app.post("/services/data/v28.0/sobjects/Account/", function(res,res){ res.send( { "status": "ok" } ) } );
+    app.post("/services/data/v29.0/sobjects/Account/", function(res,res){ res.send( { "status": "ok" } ) } );
 
-    app.patch("/services/data/v28.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
+    app.patch("/services/data/v29.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
 
-    app.get("/services/data/v28.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
+    app.get("/services/data/v29.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
 
-    app.del("/services/data/v28.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
+    app.del("/services/data/v29.0/sobjects/Account/1", function(res,res){ res.send( { "status": "ok" } ) } );
 
-    app.get("/services/data/v28.0/query", function(res,res){ res.send( { "status": "ok" } ) } );
+    app.get("/services/data/v29.0/query", function(res,res){ res.send( { "status": "ok" } ) } );
 
-    app.get("/services/data/v28.0/search", function(res,res){ res.send( { "status": "ok" } ) } );
+    app.get("/services/data/v29.0/search", function(res,res){ res.send( { "status": "ok" } ) } );
     
 
     http.createServer(app).listen(app.get('port'), function(){

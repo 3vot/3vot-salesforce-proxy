@@ -16,6 +16,7 @@
     "superagent": "~0.16.0",
     "node.extend": "~1.0.9",
     "parse": "~1.2.13",
-    "querystring": "~0.2.0"
+    "querystring": "~0.2.0",
+    "supertest": "~0.9.0"
   }
 }

@@ -20,7 +20,7 @@ describe("Salesforce Proxy", function() {
     var res = {};
     res = Api.del(data,params);
     res.path.should.equal("/services/data/v" + Api.apiVersion + "/sobjects/Account/1/");
-    res.method.should.equal("DELETE");
+    res.method.should.equal("DEL");
   });
  
  

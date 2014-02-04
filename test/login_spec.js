@@ -18,7 +18,6 @@ describe('Controller', function(){
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.session({secret: "abc"}));
     app.use(app.router);
 
     Login(app,{route: "login/salesforce"});
@@ -40,8 +39,8 @@ describe('Controller', function(){
     req.tokens.SALESFORCE_CLIENT_ID = "123";
     req.tokens.SALESFORCE_CLIENT_SECRET = "123";
     req.body = {username: "123", password: "123", login_server: "localhost:4000"};
-    
-    var res = {}
+    req.query = {};
+    var res = {};
     res.send = function(){ done(); }
     res.status = function(){ throw "error" };
     

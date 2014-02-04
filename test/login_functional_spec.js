@@ -18,10 +18,9 @@ describe('Controller', function(){
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.session({secret: "abc"}));
     app.use(app.router);
 
-    Login(app,{route: "/login/salesforce"});
+    Login(app,{route: "/login"});
 
     app.get("/services/oauth2/authorize", function(req,res){ res.send( res.redirect( req.query.redirect_uri + "?state=" + req.query.state  ) ) } );
 
