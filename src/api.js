@@ -1,5 +1,7 @@
+//Salesforce API Wrapper
+
 var RestApi = {}
-RestApi.apiVersion = "28.0";
+RestApi.apiVersion = "29.0";
 
 module.exports = RestApi;
 

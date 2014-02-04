@@ -1,47 +1,46 @@
 var SalesforceApi = require("./api");
 var extend = require('node.extend');
-
-SalesforceApi.apiVersion = "28.0";
-
+var authMiddleware = require("./authMiddleware")
 var request = require("superagent")
 var Q = require("q")
 
-function getToken(req,res,next){
+SalesforceApi.apiVersion = "29.0";
 
-    if (req.headers['authorization']) {
-      req.salesforceToken = JSON.parse(req.headers['authorization']);
-    }
-
-    else if (req.session && req.session.logins && req.session.logins.salesforce){ 
-      req.salesforceToken = req.session.logins.salesforce; 
-    }
-    
-    if(req.salesforceToken) return next();
-    return res.send(503);
-}
-
+// Setup Controller Routes with Options
+// params: 
+//  app: Express App Instnace
+//  options:
+//    apiVersion: The Salesforce API Version to use. ( matches semver )
+//    route: The route prefix
+//    authMiddleware: The route middleware to get the salesforce authentication object into req.salesforceToken
 function config(app, options){
   if(options.apiVersion) SalesforceApi.apiVersion = options.apiVersion
+  if(!options.route) options.route = "";
+  if(!options.authMiddleware) options.authMiddleware = authMiddleware
   
-  app.all(options.route + "/:objectType?/:objectId?", getToken ,function(req, res) {
-    
+  app.all(options.route + "/:objectType?/:objectId?", options.authMiddleware ,function(req, res) {
+
     var apiOptions = SalesforceApi[getServiceName(req)]( extend(req.body, req.query), req.params );
     
     buildRequest(req.salesforceToken, apiOptions)
     .then( function(proxyResponse){ success(req, res, proxyResponse)  }  )
-    .fail( function(proxyResponse){ success(req, res, proxyResponse)  }  );
+    .fail( function(err){ error(req, res, err)  }  );
    });
+
+   function success(req,res,proxyResponse){
+     res.send(proxyResponse);
+   }
+
+   function error(req,res,error){
+     res.status(500);
+     res.send( error )
+   }
 }
 
-function success(req,res,proxyResponse){
-  res.send(proxyResponse);
-}
-
-function error(req,res,error){
-  res.status(500);
-  res.send()
-}
-
+// Translates the standard REST actions to Salesforce API Service Names
+// Params: 
+//  req: the request from express route
+// Returns: An object the url and service query/body params
 function getServiceName(req) {
   var service= "";
   method = req.route.method.toLowerCase();
@@ -59,18 +58,22 @@ function getServiceName(req) {
   return service;
 };
 
+// Builds a request for salesforce with query params and body params
+// params: 
+//  auth: Salesforce AuthObject
+//  apiOptions: the API Query and Body Params
+//  httpProtocol(optional): The protocol to use, defaults to https://
+// returns a promise
 function buildRequest( auth, apiOptions, httpProtocol ){
   var deferred = Q.defer()
-  if(!httpProtocol) httpProtocol = "https://";
+  if(!httpProtocol) httpProtocol = "";
 
   apiOptions.path = httpProtocol + auth.instance_url + apiOptions.path;  
   
-  //console.log(request[apiOptions.method.toLowerCase()]("http://localhost:4000/"))
-  
-  request[apiOptions.method.toLowerCase()](apiOptions.path)
+  var r = request[apiOptions.method.toLowerCase()](apiOptions.path)
   .accept("application/json")
   .set("Accept-Encoding", "gzip")
-  .set("Authorization", auth.access_token)
+  .set("Authorization", "Bearer " + auth.access_token)
   .query(apiOptions.query || {})
   .on('error', function(error){ deferred.reject(error); })
   .send(apiOptions.data || {})

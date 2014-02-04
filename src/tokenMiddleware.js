@@ -1,3 +1,10 @@
+//Uses Parse to get Session Tokens
+
+// Expected Tokens are:
+// SALESFORCE_CLIENT_ID
+// SALESFORCE_CLIENT_SECRET
+// SALESFORCE_REDIRECT_URL
+
 var Parse = require("parse").Parse
 Parse.initialize( process.env.PARSE_APP_ID || "IOcg1R4TxCDCPVsxAwLHkz8MPSOJfj2lZwdL4BU4", process.env.PARSE_REST_KEY || "jOr74Zy7C8VbatIvxoNyt2c03B9hPY7Hc32byA78" );
 

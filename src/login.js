@@ -1,16 +1,22 @@
-var getTokens = require("./tokenMiddleware")
+var tokenMiddleware = require("./tokenMiddleware")
 var request = require('superagent');
 var querystring = require("querystring")
 
+
+// Setup Controller Routes with Options
+// params: 
+//  app: Express App Instnace
+//  options:
+//    route: The route prefix
+//    tokenMiddleware: The route middleware to get the salesforce tokens, check tokenMiddleware
 function config(app, options){
-  
-  app.get(options.route + "/:provider/login", options.tokenMiddleware || getTokens , login )
-  app.get(options.route + "/:provider/callback", options.tokenMiddleware || getTokens ,loginCallback)
-  app.all(options.route + "/:provider/password", options.tokenMiddleware || getTokens , password )  
+  app.get(options.route + "/:provider/login", options.tokenMiddleware || tokenMiddleware , login )
+  app.get(options.route + "/:provider/callback", options.tokenMiddleware || tokenMiddleware ,loginCallback)
+  app.all(options.route + "/:provider/password", options.tokenMiddleware || tokenMiddleware , password )  
 }
 
+//Retrieves the Salesforce Auth and adds it to the session
 function password(req, res, test) {
-
   var options = {
     grant_type: "password",
     client_id: req.tokens.SALESFORCE_CLIENT_ID,
@@ -30,7 +36,7 @@ function password(req, res, test) {
   .send(options)
   .on("error", onError)
   .end(function(sfRes){
-    if(!req.session){ console.error("Session not Active"); req.session = {}; }
+    if(sfRes.error) return onError(sfRes.error);
     if(!req.session.logins) req.session.logins = {};
     req.session.logins["salesforce"] = sfRes.body;
     res.send(200)
@@ -46,7 +52,7 @@ function password(req, res, test) {
 
 };
 
-
+//Starts the Salesforce Server Dance Auth Leg 1
 function login(req, res, test) {
   var protocol = "https://";
   if(test === true || req.test) protocol = "http://";  //for testing
@@ -71,6 +77,7 @@ function login(req, res, test) {
 
 }
 
+//Callback for the Salesforce Server Dance Auth Leg 2, adds the auth token to session
 function loginCallback(req, res, test) {
   var state = JSON.parse(req.query.state);
   
@@ -93,7 +100,6 @@ function loginCallback(req, res, test) {
   .on("error", onError)
   .end(function(sfRes){
     if(sfRes.error) return onError(sfRes.error);
-    if(!req.session){ console.error("Session not Active"); req.session = {}; }
     if(!req.session.logins) req.session.logins = {};
     req.session.logins["salesforce"] = sfRes.body;
     res.redirect(state.appUrl)
