@@ -39,7 +39,7 @@ The module stores Salesforce Authorization Token in the Express Session, by defa
 
 The Login component registers the routes necessary to Login to salesforce.
 
-var Login = (3vot-salesforce-proxy).Login;
+var Login = require(3vot-salesforce-proxy).Login;
 
 Login takes two arguments: ( app, options )
  App is the Express App, and options customises the component
@@ -52,7 +52,7 @@ Login takes two arguments: ( app, options )
 
 The Controller component registers the routes necessary to Proxy REST API Request to Salesforce
 
-var Controller = (3vot-salesforce-proxy).Controller;
+var Controller = require(3vot-salesforce-proxy).Controller;
 
 Controller takes two arguments: ( app, options )
  App is the Express App, and options customises the component
@@ -90,6 +90,8 @@ ________________________
 You can modify the operation of 3VOT Salesforce Proxy by creating new Route Middleware. Review src/authMiddleware and src/tokenMiddleware
 
 Simply create a modified authMiddleware and tokenMiddleware to adjust to your use case.
+
+Then supply it to Login and Controller as part of the options argument.
 
 
 Using the API
