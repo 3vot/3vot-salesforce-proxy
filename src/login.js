@@ -1,5 +1,6 @@
 var getTokens = require("./tokenMiddleware")
 var request = require('superagent');
+var querystring = require("querystring")
 
 function config(app, options){
   
@@ -14,8 +15,8 @@ function password(req, res, test) {
     grant_type: "password",
     client_id: req.tokens.SALESFORCE_CLIENT_ID,
     client_secret: req.tokens.SALESFORCE_CLIENT_SECRET,
-    username: req.body.username || req.body.query.username,
-    password: req.body.password || req.body.query.password,
+    username: req.query.username || req.body.query.username,
+    password: req.query.password || req.body.query.password,
   }
 
   var protocol = "https://";
@@ -87,9 +88,11 @@ function loginCallback(req, res, test) {
   }
   
   request.post(url)
+  .type("application/x-www-form-urlencoded")
   .send(options)
   .on("error", onError)
   .end(function(sfRes){
+    if(sfRes.error) return onError(sfRes.error);
     if(!req.session){ console.error("Session not Active"); req.session = {}; }
     if(!req.session.logins) req.session.logins = {};
     req.session.logins["salesforce"] = sfRes.body;

@@ -17,8 +17,8 @@ describe('Controller', function(){
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use(express.session({secret: "abc"}));
     app.use(app.router);
-    app.use(express.session());
 
     Login(app,{route: "/login/salesforce"});
 

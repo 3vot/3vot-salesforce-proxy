@@ -15,6 +15,7 @@
     "express": "~3.4.8",
     "superagent": "~0.16.0",
     "node.extend": "~1.0.9",
-    "parse": "~1.2.13"
+    "parse": "~1.2.13",
+    "querystring": "~0.2.0"
   }
 }

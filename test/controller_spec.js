@@ -22,6 +22,7 @@ describe('Controller Functions', function(){
 
       app.use(express.bodyParser());
       app.use(express.methodOverride());
+          app.use(express.session({secret: "abc"}));
       app.use(app.router);
 
       app.post("/services/data/v28.0/sobjects/Account/", function(res,res){ res.send( { "status": "ok" } ) } );
