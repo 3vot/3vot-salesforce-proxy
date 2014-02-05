@@ -1,5 +1,6 @@
 //Get the Auth Token from the Session or ends the https request with 503 if not found
 
+
 module.exports = function getToken(req,res,next){
 
     if (req.headers['authorization']) {

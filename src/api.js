@@ -105,18 +105,20 @@ RestApi.search = function(data,params) {
   return options;
 };
 
-RestApi.query = function(data,params) {
+RestApi.query = function(data, params) {
   var options = {
     path: "/services/data/v" + RestApi.apiVersion + "/query/",
     method: "GET",
-    query: { q: data.query }
+    query: { q: data.query },
+    autoFetch: data.auto_fetch || false
   };
   return options;
 };
 
 RestApi.queryMore = function(data,params) {
   var options = {
-    path: data.nextRecordsUrl
+    path: data.nextRecordsUrl,
+    method: "GET"
   };
   return options;
 };

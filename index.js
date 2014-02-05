@@ -1,2 +1,2 @@
 module.exports.Login = require("./src/login")
-module.exports.Controller = require("./src/controller")
+module.exports.controller = require("./src/controller")

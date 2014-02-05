@@ -18,23 +18,35 @@ function config(app, options){
   if(!options.route) options.route = "";
   if(!options.authMiddleware) options.authMiddleware = authMiddleware
   
-  app.all(options.route + "/:objectType?/:objectId?", options.authMiddleware ,function(req, res) {
+  app.all(options.route + "/query", options.authMiddleware ,function(req, res) {
 
+    return restRoute(req,res, SalesforceApi.query( extend(req.body, req.query)));
+
+   });
+  
+  app.all(options.route + "/:objectType?/:objectId?", options.authMiddleware ,function(req, res) {
+    
     var apiOptions = SalesforceApi[getServiceName(req)]( extend(req.body, req.query), req.params );
     
-    buildRequest(req.salesforceToken, apiOptions)
-    .then( function(proxyResponse){ success(req, res, proxyResponse)  }  )
-    .fail( function(err){ error(req, res, err)  }  );
+    return restRoute(req,res, apiOptions);
    });
 
-   function success(req,res,proxyResponse){
-     res.send(proxyResponse);
-   }
 
-   function error(req,res,error){
-     res.status(500);
-     res.send( error )
-   }
+}
+
+function restRoute(req,res, apiOptions){
+  
+  buildRequest(req.salesforceToken, apiOptions)
+  .then( function(results) { res.send(results); } )
+  .fail( 
+    function(err){ 
+      if( err.indexOf("INVALID_SESSION_ID") > -1 ){
+        req.session.logins.salesforce = null;
+        return res.send(503, err);
+      }
+      res.send(500, err); 
+    }
+  );
 }
 
 // Translates the standard REST actions to Salesforce API Service Names
@@ -60,29 +72,61 @@ function getServiceName(req) {
 
 // Builds a request for salesforce with query params and body params
 // params: 
-//  auth: Salesforce AuthObject
+//  salesforceToken: Salesforce AuthObject
 //  apiOptions: the API Query and Body Params
 //  httpProtocol(optional): The protocol to use, defaults to https://
 // returns a promise
-function buildRequest( auth, apiOptions, httpProtocol ){
+function buildRequest( salesforceToken, apiOptions, httpProtocol, options ){
   var deferred = Q.defer()
   if(!httpProtocol) httpProtocol = "";
+  if(options) options = {};
 
-  apiOptions.path = httpProtocol + auth.instance_url + apiOptions.path;  
+  apiOptions.path = httpProtocol + salesforceToken.instance_url + apiOptions.path;  
   
   var r = request[apiOptions.method.toLowerCase()](apiOptions.path)
   .accept("application/json")
   .set("Accept-Encoding", "gzip")
-  .set("Authorization", "Bearer " + auth.access_token)
+  .set("Authorization", "Bearer " + salesforceToken.access_token)
   .query(apiOptions.query || {})
-  .on('error', function(error){ deferred.reject(error); })
+  .on('error', function(error){ return deferred.reject(error); })
   .send(apiOptions.data || {})
   .end( function(res){
-    if( res.error ) return deferred.reject(res.error)
-    return deferred.resolve(res.body)
-  });
-  
+    if( res.error ) return deferred.reject(res.error + " " + JSON.stringify(res.body || {}) )
+    if( res.body.done === false && apiOptions.autoFetch === "true" ){
+      queryMore( salesforceToken, res.body )
+      .then( function(allQueryResults){ deferred.resolve( allQueryResults ) } )
+      .fail( function(err){ deferred.reject(err) } );
+    }
+    else{
+      return deferred.resolve(res.body);
+    }
+  });  
   return deferred.promise;  
+}
+
+function queryMore(salesforceToken, lastResponse){
+  var deferred = Q.defer()
+  var allObjects = lastResponse.records;
+
+  loadAll(lastResponse);
+
+  function loadAll(lastResponse){
+    var apiOptions = SalesforceApi.queryMore( lastResponse );
+    
+    buildRequest( salesforceToken, apiOptions)
+    .then( 
+      function(response){ 
+        allObjects = allObjects.concat(response.records);
+
+        if(response.done) deferred.resolve({ "done" : true, "totalSize" : allObjects.length, "records" : allObjects } );
+
+        else loadAll(response); 
+
+      }
+    ).fail( function(err){ if(typeof err !== "string"){err = "Server Code Error in controller.queryMore " + err.toString()}; deferred.reject(err); } )
+  };
+
+  return deferred.promise;
 }
 
 module.exports = config;
