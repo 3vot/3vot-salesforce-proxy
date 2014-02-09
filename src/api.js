@@ -54,6 +54,9 @@ RestApi.describe = function(data,params) {
 };
 
 RestApi.create = function(data,params) {
+  delete data.Id
+  delete data.id
+  
   var options = {
     path: "/services/data/v" + RestApi.apiVersion + "/sobjects/" + params.objectType + "/",
     method: "POST",
