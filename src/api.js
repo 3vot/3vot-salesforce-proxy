@@ -80,6 +80,9 @@ RestApi.upsert = function(data,params) {
 };
 
 RestApi.update = function(data,params) {
+  delete data.Id
+  delete data.id
+  
   var options = {
     path: "/services/data/v" + RestApi.apiVersion + "/sobjects/" + params.objectType + "/" + params.objectId + "/",
     method: "PATCH",
