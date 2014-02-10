@@ -63,7 +63,8 @@ function login(req, res, test) {
   var state = JSON.stringify({
     loginServer: loginServer,
     appUrl: req.query.app_url,
-    profile: req.query.profile
+    profile: req.query.profile,
+    provider: req.params.provider
   });
 
   var options = {
@@ -102,6 +103,7 @@ function loginCallback(req, res, test) {
     if(sfRes.error) return onError(sfRes.error);
     if(!req.session.logins) req.session.logins = {};
     req.session.logins["salesforce"] = sfRes.body;
+    req.session.logins[state.provider] = sfRes.body;
     res.redirect(state.appUrl)
   })
   
@@ -111,9 +113,7 @@ function loginCallback(req, res, test) {
    res.status(503);
    return res.send(error);
   }
-
 }
-
 
 module.exports = config;
 config.password = password;
