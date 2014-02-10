@@ -8,9 +8,9 @@ module.exports = function getToken(req,res,next){
     req.salesforceToken = JSON.parse(req.headers['authorization']);
   }
 
-  else if (req.session && req.session.logins && req.session.logins["providerName"]){ 
+  else if (req.session && req.session.logins && req.session.logins[providerName]){ 
 
-    req.salesforceToken = req.session.logins["providerName"]; 
+    req.salesforceToken = req.session.logins[providerName]; 
   }
   
   if(req.salesforceToken) return next();
