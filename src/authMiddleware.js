@@ -10,10 +10,10 @@ module.exports = function getToken(req,res,next){
 
   else if (req.session && req.session.logins && req.session.logins[providerName]){ 
 
-    req.salesforceToken = req.session.logins[providerName]; 
+    req.salesforceToken = req.session.logins[providerName];
   }
   
   if(req.salesforceToken) return next();
   res.status(503)
-  return res.send("Salesforce Auth Token not found in session or in authorization header " + req.salesforceToken);
+  return res.send("Salesforce Auth Token not found in session or in authorization header " + providerName + " " + req.session.logins);
 }
