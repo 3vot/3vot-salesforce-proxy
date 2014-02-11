@@ -104,7 +104,7 @@ function loginCallback(req, res, test) {
     if(sfRes.error) return onError(sfRes.error);
     if(!req.session.logins) req.session.logins = {};
     req.session.logins[ state.provider || "salesforce" ] = sfRes.body;
-    req.session.logins[ state.provider || "salesforce" ].state = state;
+    //req.session.logins[ state.provider || "salesforce" ].state = state;
     res.redirect(state.appUrl)
   })
   
