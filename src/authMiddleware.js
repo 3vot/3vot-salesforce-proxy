@@ -2,7 +2,7 @@
 
 module.exports = function getToken(req,res,next){
 
-  var providerName = req.headers['provider'] || "salesforce";
+  var providerName = req.headers['X-3VOT-PROVIDER'] || "salesforce";
 
   if (req.headers['authorization']) {
     req.salesforceToken = JSON.parse(req.headers['authorization']);

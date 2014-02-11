@@ -23,4 +23,6 @@ function getTokens(profile, provider){
     }
   });
 
+  return deferred.promise;
+
 }

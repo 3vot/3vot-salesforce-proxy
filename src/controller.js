@@ -40,7 +40,8 @@ function restRoute(req,res, apiOptions){
   .fail( 
     function(err){ 
       if( err.indexOf("INVALID_SESSION_ID") > -1 ){
-        req.session.logins.salesforce = null;
+        var key = req.headers['X-3VOT-PROVIDER'] || "salesforce";
+        delete req.session.logins[key];
         return res.send(503, err);
       }
       res.send(500, err); 

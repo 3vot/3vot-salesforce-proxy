@@ -59,7 +59,7 @@ function login(req, res, test) {
   var loginServer = req.query.login_server || "login.salesforce.com";
   var url = protocol + loginServer + "/services/oauth2/authorize";
   
-  var provider = null;
+  var provider = "salesforce";
   if(req.query.useProvider) provider = req.params.provider
   
   var state = JSON.stringify({
@@ -103,8 +103,8 @@ function loginCallback(req, res, test) {
   .end(function(sfRes){
     if(sfRes.error) return onError(sfRes.error);
     if(!req.session.logins) req.session.logins = {};
-    req.session.logins[ state.provider || "salesforce" ] = sfRes.body;
-    //req.session.logins[ state.provider || "salesforce" ].state = state;
+    req.session.logins[ state.provider] = sfRes.body;
+    req.session.logins[ state.provider].state = state;
     res.redirect(state.appUrl)
   })
   
