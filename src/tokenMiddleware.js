@@ -4,7 +4,7 @@
 // SALESFORCE_CLIENT_ID
 // SALESFORCE_CLIENT_SECRET
 // SALESFORCE_REDIRECT_URL
-var Token  = require("./model/token")
+var Token  = require("./models/token")
 
 module.exports = function getTokens(req, res, next){
 

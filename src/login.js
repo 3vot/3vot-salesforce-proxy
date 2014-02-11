@@ -48,8 +48,7 @@ function password(req, res, test) {
    console.error(error);
    res.status(503);
    return res.send(error);
-  }   
-
+  }
 };
 
 //Starts the Salesforce Server Dance Auth Leg 1
