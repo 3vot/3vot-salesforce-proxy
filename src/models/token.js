@@ -11,7 +11,7 @@ function getTokens(profile, provider){
   
   var Tokens = Parse.Object.extend("Tokens");
   var query = new Parse.Query(Tokens);
-  query.equalTo("profile", profile;
+  query.equalTo("profile", profile);
   query.equalTo("provider", provider);
   query.find({
     success: function(results) {
