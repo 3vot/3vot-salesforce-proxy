@@ -78,7 +78,6 @@ function login(req, res, test) {
   }
   
   return res.redirect(url + "?" + querystring.stringify(options) );
-
 }
 
 //Callback for the Salesforce Server Dance Auth Leg 2, adds the auth token to session
@@ -106,6 +105,7 @@ function loginCallback(req, res, test) {
     if(sfRes.error) return onError(sfRes.error);
     if(!req.session.logins) req.session.logins = {};
     req.session.logins[ state.provider || "salesforce" ] = sfRes.body;
+    req.session.logins[ state.provider || "salesforce" ].state = state;
     res.redirect(state.appUrl)
   })
   
@@ -115,9 +115,7 @@ function loginCallback(req, res, test) {
    res.status(503);
    return res.send(error);
   }
-
 }
-
 
 module.exports = config;
 config.password = password;

@@ -35,7 +35,6 @@ function config(app, options){
 }
 
 function restRoute(req,res, apiOptions){
-  
   buildRequest(req.salesforceToken, apiOptions)
   .then( function(results) { res.send(results); } )
   .fail( 

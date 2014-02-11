@@ -1,0 +1,157 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.3.5
+3 info using node@v0.10.18
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/roberto/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+12 verbose folder .
+13 info prepublish 3vot-salesforce-proxy@0.1.0
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/roberto/.npm/1f1177db-tar.lock
+16 silly lockFile de7ea015-6838-0-18220505467616022-tmp-tgz tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+17 verbose lock tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz /Users/roberto/.npm/de7ea015-6838-0-18220505467616022-tmp-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile de7ea015-6838-0-18220505467616022-tmp-tgz tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+21 silly lockFile de7ea015-6838-0-18220505467616022-tmp-tgz tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+22 verbose tar unpack /var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+23 silly lockFile 6a69bac8-6838-0-18220505467616022-package tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package
+24 verbose lock tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package /Users/roberto/.npm/6a69bac8-6838-0-18220505467616022-package.lock
+25 silly lockFile de7ea015-6838-0-18220505467616022-tmp-tgz tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+26 verbose lock tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz /Users/roberto/.npm/de7ea015-6838-0-18220505467616022-tmp-tgz.lock
+27 silly gunzTarPerm modes [ '755', '644' ]
+28 silly gunzTarPerm extractEntry package.json
+29 silly gunzTarPerm extractEntry .npmignore
+30 silly gunzTarPerm extractEntry README.md
+31 silly gunzTarPerm extractEntry LICENSE
+32 silly gunzTarPerm extractEntry index.js
+33 silly gunzTarPerm extractEntry src/api.js
+34 silly gunzTarPerm extractEntry src/authMiddleware.js
+35 silly gunzTarPerm extractEntry src/controller.js
+36 silly gunzTarPerm extractEntry src/login.js
+37 silly gunzTarPerm extractEntry src/tokenMiddleware.js
+38 silly gunzTarPerm extractEntry test/api_spec.js
+39 silly gunzTarPerm extractEntry test/controller_functional_spec.js
+40 silly gunzTarPerm extractEntry test/controller_spec.js
+41 silly gunzTarPerm extractEntry test/login_functional_spec.js
+42 silly gunzTarPerm extractEntry test/login_integration_spec.js
+43 silly gunzTarPerm extractEntry test/login_spec.js
+44 silly gunzTarPerm extractEntry test/manual.js
+45 silly lockFile 6a69bac8-6838-0-18220505467616022-package tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package
+46 silly lockFile 6a69bac8-6838-0-18220505467616022-package tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package
+47 silly lockFile de7ea015-6838-0-18220505467616022-tmp-tgz tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+48 silly lockFile de7ea015-6838-0-18220505467616022-tmp-tgz tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/tmp.tgz
+49 verbose tar pack [ '/Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz',
+49 verbose tar pack   '/var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package' ]
+50 verbose tarball /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+51 verbose folder /var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package
+52 silly lockFile 6a69bac8-6838-0-18220505467616022-package tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package
+53 verbose lock tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package /Users/roberto/.npm/6a69bac8-6838-0-18220505467616022-package.lock
+54 silly lockFile bd036cbb-lesforce-proxy-0-1-0-package-tgz tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+55 verbose lock tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz /Users/roberto/.npm/bd036cbb-lesforce-proxy-0-1-0-package-tgz.lock
+56 silly lockFile 6a69bac8-6838-0-18220505467616022-package tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package
+57 silly lockFile 6a69bac8-6838-0-18220505467616022-package tar:///var/folders/w3/bbhyplhd5c78my8c7dm723s40000gn/T/npm-60198-1ocl1sij/1392075526838-0.18220505467616022/package
+58 silly lockFile bd036cbb-lesforce-proxy-0-1-0-package-tgz tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+59 silly lockFile bd036cbb-lesforce-proxy-0-1-0-package-tgz tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+60 silly lockFile 4938cef7-t-salesforce-proxy-0-1-0-package /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package
+61 verbose lock /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package /Users/roberto/.npm/4938cef7-t-salesforce-proxy-0-1-0-package.lock
+62 silly lockFile 4938cef7-t-salesforce-proxy-0-1-0-package /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package
+63 silly lockFile 4938cef7-t-salesforce-proxy-0-1-0-package /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package
+64 verbose tar unpack /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+65 silly lockFile 8b04569a-t-salesforce-proxy-0-1-0-package tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package
+66 verbose lock tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package /Users/roberto/.npm/8b04569a-t-salesforce-proxy-0-1-0-package.lock
+67 silly lockFile bd036cbb-lesforce-proxy-0-1-0-package-tgz tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+68 verbose lock tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz /Users/roberto/.npm/bd036cbb-lesforce-proxy-0-1-0-package-tgz.lock
+69 silly gunzTarPerm modes [ '755', '644' ]
+70 silly gunzTarPerm extractEntry package.json
+71 silly gunzTarPerm extractEntry .npmignore
+72 silly gunzTarPerm extractEntry README.md
+73 silly gunzTarPerm extractEntry LICENSE
+74 silly gunzTarPerm extractEntry index.js
+75 silly gunzTarPerm extractEntry src/api.js
+76 silly gunzTarPerm extractEntry src/authMiddleware.js
+77 silly gunzTarPerm extractEntry src/controller.js
+78 silly gunzTarPerm extractEntry src/login.js
+79 silly gunzTarPerm extractEntry src/tokenMiddleware.js
+80 silly gunzTarPerm extractEntry test/api_spec.js
+81 silly gunzTarPerm extractEntry test/controller_functional_spec.js
+82 silly gunzTarPerm extractEntry test/controller_spec.js
+83 silly gunzTarPerm extractEntry test/login_functional_spec.js
+84 silly gunzTarPerm extractEntry test/login_integration_spec.js
+85 silly gunzTarPerm extractEntry test/login_spec.js
+86 silly gunzTarPerm extractEntry test/manual.js
+87 silly lockFile 8b04569a-t-salesforce-proxy-0-1-0-package tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package
+88 silly lockFile 8b04569a-t-salesforce-proxy-0-1-0-package tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package
+89 silly lockFile bd036cbb-lesforce-proxy-0-1-0-package-tgz tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+90 silly lockFile bd036cbb-lesforce-proxy-0-1-0-package-tgz tar:///Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz
+91 verbose chmod /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz 644
+92 verbose chown /Users/roberto/.npm/3vot-salesforce-proxy/0.1.0/package.tgz [ 501, 20 ]
+93 silly lockFile 3a52ce78- .
+94 silly lockFile 3a52ce78- .
+95 silly publish { name: '3vot-salesforce-proxy',
+95 silly publish   version: '0.1.0',
+95 silly publish   description: 'Salesforce Production NodeJS Proxy Server that translates SF-REST-API into standard REST to be consumed by BackboneJS, SpineJS, Angular, Ember, etc. It includes an OAUTH Authentication Strategy for OAUTH 2.0 Password and Server and Cookie Stateless Session Management for infinite scalability',
+95 silly publish   main: 'index.js',
+95 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+95 silly publish   author: '',
+95 silly publish   license: 'BSD',
+95 silly publish   dependencies:
+95 silly publish    { q: '~1.0.0',
+95 silly publish      mocha: '~1.17.1',
+95 silly publish      should: '~3.1.2',
+95 silly publish      express: '~3.4.8',
+95 silly publish      superagent: '~0.16.0',
+95 silly publish      'node.extend': '~1.0.9',
+95 silly publish      parse: '~1.2.13',
+95 silly publish      querystring: '~0.2.0',
+95 silly publish      supertest: '~0.9.0' },
+95 silly publish   readme: 'NOTE: Project and Documentation in Progress. \nNOT FOR PRODUCTION\nVersion: 0.0.2\n\n3vot-salesforce-proxy\n=====================\n\nSalesforce Production NodeJS Proxy Server that translates SF-REST-API into standard REST to be consumed by BackboneJS, SpineJS, Angular, Ember, etc. It includes an OAUTH Authentication Strategy for OAUTH 2.0 Password and Server and Cookie Stateless Session Management for infinite scalability\n\n\nOverview\n====================\n\nSalesforce uses OAUTH 2.0 for authentication and does not provide CORS to connect directly from Web Apps.\n\nThis is a proxy, that enables MVC Frameworks to connect out of the box with Salesforce\n\nThis Modules is designed to be used in a Express App and deployed to a Cloudaas such as Heroku, Aws, etc\n\nFor a commercial solution, visit backend.3vot.com where you\'ll be able to use this service with a 1-click Install using Salesforce Connected Apps Technology.\n\n\n\nInstall\n---------------------\n$ npm install 3vot-salesforce-proxy\n\n\nGetting Started\n---------------------\n\nThis module is configured by default to be used with the 3VOT Platform, but it\'s easily configured to run as a standalone.\n\nThe module uses the concept of Multi-Tenant Authentication with Salesforce, so that multiple Apps can use the module as a Proxy. The Salesforce Remote App Keys are stored on a DataStore, but they can easily be obtained from process.env configuration settings. By default keys are stored in Parse.com service under a Profile and Provider Key.\n\nThe module stores Salesforce Authorization Token in the Express Session, by default with the key salesforceToken; The Salesforce Proxy Component will look for the Salesforce Authorization Token in req.session.salesforceToken and use it to sign every request to Salesforce.\n\n3VOT Salesforce Proxy exposes two components, they are Login and Controller.\n\nThe Login component registers the routes necessary to Login to salesforce.\n\nvar Login = require(3vot-salesforce-proxy).Login;\n\nLogin takes two arguments: ( app, options )\n App is the Express App, and options customises the component\n\n Login(app, { route: string , tokenMiddleware: function } );\n\n route is the prefix you want to set to the Salesforce Login Component, for example "/sessions/login" or "/auth"\n\n tokenMiddleware is the Route Middleware with the form (req,res,next) that sets the Salesforce Tokens to req.tokens. The login components will search for the Auth Keys in req.tokens.salesforce and its form is: { SALESFORCE_CLIENT_ID: "", SALESFORCE_CLIENT_SECRET: "", SALESFORCE_REDIRECT_URL: "" }\n\nThe Controller component registers the routes necessary to Proxy REST API Request to Salesforce\n\nvar Controller = require(3vot-salesforce-proxy).Controller;\n\nController takes two arguments: ( app, options )\n App is the Express App, and options customises the component\n\n route is the prefix you want to set to the Salesforce Login Component, for example "/proxy" or "/v1"\n\n authMiddleware is the Authentication Middleware with the form (req,res,next) that sets the Salesforce Authentication Tokens to req.salesforceToken. The Salesforce Rest Api Proxy components will search for the Auth Keys in req.salesforceToken and its form is exactly what Salesforce Auth returns.\n\n\nSetup out of the Box\n________________________\n\nCheck out the test/manual.js for a simple example of how to setup with express.\n\nIn Express is essential to enable Sessions and that session data are available from req.session\n\nBefore you start Set you PARSE.COM API KEYS in /src/tokenMiddleware\n\n$ node ./test/manual.js\n\nPoint your browser to http://localhost:3001/v1/login/[PROVIDER]/login?profile=[PROFILE]&app_url=[APP_URL]\n\n[PROVIDER] and [PROFILE] are the Database Keys uses to query the Salesforce OAUTH Keys.\n\n[APP_URL] is the URL you want the proxy server to redirect after Login was Successful.\n\nWith the provided demo express server, this looks like:\n\nhttp://localhost:3001/v1/login/salesforce_local/login?profile=3vot&app_url=http://localhost:3001/v1/salesforce?query=select%20id%20from%20account\n\n\nCustom Setup\n________________________\n\nYou can modify the operation of 3VOT Salesforce Proxy by creating new Route Middleware. Review src/authMiddleware and src/tokenMiddleware\n\nSimply create a modified authMiddleware and tokenMiddleware to adjust to your use case.\n\nThen supply it to Login and Controller as part of the options argument.\n\n\nUsing the API\n______________________\nThe 3VOT Salesforce Proxy works directly with Salesforce, it does not store any information on the server. The Server is Stateless.\n\nTo use the api is very simple. Point your AJAX Request to this service with the following routes:\n\noptions.route + "/:objectType?/:objectId?"\n\nto get an object \n\nGET http://localhost/v1/salesforce/Account/50130000000014c\n\nTo create an object\n\nPOST http://localhost/v1/salesforce/Account\n\nTo modify an object\n\nPUT http://localhost/v1/salesforce/Account/50130000000014c\n\nto delete an object\n\nDELETE http://localhost/v1/salesforce/Account/50130000000014c\n\nto query\n\nGET http://localhost/v1/salesforce/?query=select+id+from+salesforce\n\nto search\n\nGET http://localhost/v1/salesforce/?search=select+id+from+salesforce\n\nother API\n\nMore Saleforce Rest Endpoints will be published real soon\n\n\nAjax Indications\n________________________\n\nBy default Browsers do not accept sending AJAX requests to other domains, make sure you enable CORS in your Express Server\n\nIn order for your browser and server to exchange Cookies, enable the header withCredentials:true on your Ajax Request\n\n\nSupport\n________________________\n3VOT Saleforce Proxy is supported by 3VOT Corporation and it\'s a core component of the 3VOT Plataform @ 3vot.com\n\nFor support or to use our commercial version, please visit http://backend.3vot.com it only takes a 1-Click Salesforce Install\n\nThank You\n\n\n\n\n',
+95 silly publish   readmeFilename: 'README.md',
+95 silly publish   _id: '3vot-salesforce-proxy@0.1.0',
+95 silly publish   dist: { shasum: '24a079350f6380532ec664984bb32ca7f10dfce5' },
+95 silly publish   _from: '.' }
+96 verbose url raw 3vot-salesforce-proxy
+97 verbose url resolving [ 'https://registry.npmjs.org/', './3vot-salesforce-proxy' ]
+98 verbose url resolved https://registry.npmjs.org/3vot-salesforce-proxy
+99 info trying registry request attempt 1 at 17:38:47
+100 http PUT https://registry.npmjs.org/3vot-salesforce-proxy
+101 http 409 https://registry.npmjs.org/3vot-salesforce-proxy
+102 verbose url raw 3vot-salesforce-proxy
+103 verbose url resolving [ 'https://registry.npmjs.org/', './3vot-salesforce-proxy' ]
+104 verbose url resolved https://registry.npmjs.org/3vot-salesforce-proxy
+105 info trying registry request attempt 1 at 17:38:48
+106 http GET https://registry.npmjs.org/3vot-salesforce-proxy
+107 http 200 https://registry.npmjs.org/3vot-salesforce-proxy
+108 error publish fail Cannot publish over existing version.
+108 error publish fail Update the 'version' field in package.json and try again.
+108 error publish fail
+108 error publish fail If the previous version was published in error, see:
+108 error publish fail     npm help unpublish
+108 error publish fail
+108 error publish fail To automatically increment version numbers, see:
+108 error publish fail     npm help version
+109 error System Darwin 13.0.0
+110 error command "node" "/usr/local/bin/npm" "publish"
+111 error cwd /Users/roberto/proyectos/3vot/3vot-salesforce-proxy
+112 error node -v v0.10.18
+113 error npm -v 1.3.5
+114 error code EPUBLISHCONFLICT
+115 verbose exit [ 1, true ]
