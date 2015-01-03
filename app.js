@@ -16,7 +16,7 @@ app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded() );
 app.use( cookieParser() );
 app.use( cookieSession( { proxy: true, secret: "the last of the mohicans" } ));
-app.use(cors( { allowedOrigins: process.env.ORIGIN.split(",") } ));
+app.use(cors( { allowedOrigins: process.env.ORIGINS.split(",") } ));
 
 app.use('/', login);
 app.use('/api', api);
@@ -27,7 +27,7 @@ app.get("/", function(req,res){
 
 //if (app.get('env') === 'development') {
   app.get("/session", function(req,res){
-      app.session = req.session.salesforce;
+      //app.session = req.session.salesforce;
       res.send( req.session.salesforce );
   })
 //}
