@@ -16,7 +16,8 @@
     "cookie-session": "~1.1.0",
     "tape": "~3.0.3",
     "dotenv": "~0.4.0",
-    "express-cors": "0.0.3"
+    "express-cors": "0.0.3",
+    "superagent": "~0.21.0"
   },
   "author": "roberto@rodriguezartavia.com",
   "repository": "https://github.com/3vot/3vot-salesforce-proxy",
