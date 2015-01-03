@@ -1,6 +1,6 @@
 {
   "name": "3vot Salesforce Proxy",
-  "description": "Salesforce REST Proxy - Specially designed to work with Clay Model",
+  "description": "Salesforce REST API Proxy - makes Salesforce API Right & Easy - Account.create-update-delete-query - works with JS Models by @3VOT",
   "keywords": [
     "clay",
     "salesforce",
