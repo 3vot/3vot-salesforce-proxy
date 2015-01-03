@@ -1,4 +1,4 @@
-NOTE: Project and Documentation in Progress. 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 # 3vot-salesforce-proxy
 
@@ -65,6 +65,15 @@ More information about using the proxy can be found in clay-model and clay-model
 4. CORS
 
 Set the allowed domains on the enviroment variable ORIGINS=*.DOMAIN.com , other domains separated by ','
+
+5. Clustering
+This API Proxy server is enabled with clustering, we also use forking to make sure any unhandled exception won't stop the server, just the worker while the master just spins up a new worker.
+
+## Deploy
+Use the Heroku Button
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+Deploy the code and start the server with `node ./bin/ww`
 
 
 ## Using in another server
