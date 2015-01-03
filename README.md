@@ -2,18 +2,39 @@
 
 # 3vot-salesforce-proxy
 
-
-Salesforce Production NodeJS Proxy Server that translates SF-REST-API into standard REST to be consumed by BackboneJS, SpineJS, Angular, Ember, etc. It includes an OAUTH Authentication Strategy for OAUTH 2.0 Password and Server and Cookie Stateless Session Management for infinite scalability
-
-
-## Overview
-
+## WHY
 
 Salesforce uses OAUTH 2.0 for authentication and does not provide CORS to connect directly from Web Apps.
 
-This is an intelligent proxy that enables MVC Frameworks to connect out of the box with Salesforce. A regular proxy is not enough because it over complicates the frontend and requires frontend developers to know Apex, which makes a project 3X more expensive.
+More importantly the Salesforce REST API is not designed to be frontend friendly. Most Models and AJAX modules won't work. Salesforce App Developers end up not using models and communicating with Salesforce REST API directly. This approach requires knowledge of APEX and Salesforce, makes App Development much more expensive and breaks M*VC.
 
-This Modules is designed to be used as an standalone or in a Express App and deployed to the Cloud such as Heroku, Aws, etc
+## What
+
+A Production Proxy Server written in NodeJS with clustering that translates standard traditional REST to Salesforce Rest API. It makes it easy work with Salesforce Data in Javascript. 
+
+Developers can simply create object `Account.create({ Name: "Acme" })` - query `Account.query("select id, name from account")` - update and delete 'account.save()' - 'account.delete()'.
+
+This way frontend developers can build Salesforce Apps, reducing costs and improving development speed in several by 3X+.
+
+The server includes Login based in oauth2 or password, handles session refresh and it's stateless, so it can be scaled instantly up to infinity.
+
+## How
+
+Simply use the Heroku Button to get your Proxy Server Running now!
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+Deploy from NPM by using the file app.js as or bin/www as node start script.
+
+Use the routes in routes/login and routes/api in your own server, making sure you are using the cookie-session NPM module
+
+## More
+
+This Server is part of [ClayForSalesforce.com](http://clayforsalesforce.com) , a platform to develop Modern Frontend Apps for Salesforce as Visualforce/Static Resources, in the Browser and in Mobile Devices.
+
+Salesforce has a particular Rest idiosyncrasy in that it returns null for updates and deletes, they mix Id and id fields and return the Rest results wrapped in another object. It should work with most Ajax Models if you cater for this issues.
+
+ClayforSalesforce has a versatile model called Clay Model that can be used in conjuntion with the Salesforce APi Adapter called clay-model-salesforce-api which makes everything works out of the box and as an additional featurea only sends modified fields on update, which is great while dealing with update in context of CRUD and FLS Security.
+
 
 This package is supported by 3VOT Corporation.
 
@@ -21,30 +42,34 @@ This package is supported by 3VOT Corporation.
 
 $ npm install 3vot-salesforce-proxy
 
+## Setup
+Setup can be somewhat accelerated by using the Heroku button > APP_NAME, then `heroku clone ` and `heroku config:pull`
 
-## Using as Standalone
+1. Create a Salesforce Connect App for localhost (localhost:5000) and one for production ( using your server url or xxxx.herokuapp.com )
 
-
-
-1. Setup the following ENV Variables file .env and .denv
+2. Setup the following ENV Variables file .env and .denv
 SALESFORCE_CLIENT_ID, SALESFORCE_CLIENT_SECRET, SALESFORCE_REDIRECT_URL, NODE_ENV, ORIGINS
 
 Check this gist for a quick format: https://gist.github.com/rodriguezartav/b5ed90528075777d2edd
 
-2. Start the server:
-Make sure you have a .env and .denv files, filled with enviroment variables.
+## Getting Started
+Start the server
+Production `foreman start` - auto loads .env
+Production `./bin/ww` - loads .env 
+Development `./bin/w` - loads .denv
 
-If you are using foreman and heroku run it with `foreman start`, if foreman is not your thing start it with `node ./bin/ww`. 
+Point your browser to http://localhost:5000/login , check out /session and /whoami
 
-For local development start it with `node ./bin/w`. Make sure you have .denv with Salesforce Credentials
+## Using from an App
+First you must login, point your browser to the /login route make sure to supply and app_url query string variable. This is the URL where the Proxy will redirect after login. You can also hardcode this value as ENV-VARIABLE called SALESFORCE_FINAL_URL
 
-The environment variable SALESFORCE_USERNAME and SALESFORCE_PASSWORD can be used in conjuntion to the route /login/password - user will login without having to type password. Single User use - We used it for testing and such.
+Now make regular HTTP REST API Calls GET,POST,PUT,DEL using OBJECT/ID url's
 
-3. Login
-Visit /login in order to login into Salesforce using oauth2
+Get requests with a ?query=select... querystring are treated as SOQL Queries, add autoFetch and maxFetch query string params to control how many records to return. ie: http://localhost:5000/Account?query="select id, name from Account&autoFetch=true&maxFetch=10000"
 
-Users may also login via username/password, using the /login/password route
+Also available is the Apex Rest route [GET,POST,PUT,DEL,PATCH] apex/method where method is the APEX TEST method name. Params can be supplied in http body when [POST,PUT,DEL,PATCH], for GET request include querystring with the method name. apex/method?param1=true
 
+## Rules
 After login the proxy will redirect depending on the following rules:
 
 1. app_url: It will use the app_url query string provided to the login route. /login?app_url=myapp.com/start
@@ -53,7 +78,7 @@ After login the proxy will redirect depending on the following rules:
 
 If you are running the proxy in development, there is also the /session route. Which will output Salesforce Security Token, this is valid for testing and easily obtaining tokens. It will not be available in production becase you'll set the ENV Variable NODE_ENV to 'production'
 
-4. Using the Proxy
+### Using the Proxy
 The Proxy is based and uses jsforce, so follow up on JSFORCE documentation, study the tests provide in this repo or request support from us.
 
 The proxy is designed to work out of the box with Javascript Models, specially clay-model using clay-model-salesforce-api.
@@ -62,18 +87,12 @@ When using clay-model, apps without code modification between Visualforce Remoti
 
 More information about using the proxy can be found in clay-model and clay-model-salesforce-api repositories in 3VOT Profile in Github.
 
-4. CORS
+### CORS
 
 Set the allowed domains on the enviroment variable ORIGINS=*.DOMAIN.com , other domains separated by ','
 
-5. Clustering
+### Clustering
 This API Proxy server is enabled with clustering, we also use forking to make sure any unhandled exception won't stop the server, just the worker while the master just spins up a new worker.
-
-## Deploy
-Use the Heroku Button
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-Deploy the code and start the server with `node ./bin/ww`
 
 
 ## Using in another server
