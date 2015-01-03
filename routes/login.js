@@ -36,7 +36,7 @@ function getConnection(req, res){
   var conn = new jsforce.Connection( credentials );
     
   conn.on("refresh", function(accessToken, res) {
-    req.session.salesforce.access_token = access_token;
+    req.session.salesforce.access_token = accessToken;
   });
 
   req.conn = conn;

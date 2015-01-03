@@ -1,10 +1,24 @@
 #!/usr/bin/env node
+var cluster = require('cluster');
+
 var debug = require('debug')("development");
 var app = require('../app');
 
-app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function() {
+if (cluster.isMaster) {
+  cluster.fork();
 
-  debug('Express server listening on port ' + server.address().port);
-});
+  cluster.on('exit', function(worker, code, signal) {
+    cluster.fork();
+  });
+}
+
+if (cluster.isWorker) {
+	 app.set('port', process.env.PORT || 3000);
+
+	var server = app.listen(app.get('port'), function() {
+
+	  debug('Express server listening on port ' + server.address().port);
+	});
+}
+
