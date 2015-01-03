@@ -1,5 +1,4 @@
-<<<<<<< HEAD
 node_modules
-=======
-node_modules
->>>>>>> 298acf80307c5244becf95489e81e3277557e06b
+.env
+.denv
+test
