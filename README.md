@@ -32,7 +32,7 @@ Using as Standalone
 SALESFORCE_CLIENT_ID, SALESFORCE_CLIENT_SECRET, SALESFORCE_REDIRECT_URL, NODE_ENV
 
 2. Start the server:
-If you are using foreman and heroku run it with `node ./bin/www`, if not start it with `node ./bin/ww`
+If you are using foreman and heroku run it with `node ./bin/www`, if not start it with `node ./bin/ww`. For local development start it with `node ./bin/w`.
 
 The difference lies in the way enviroment variables are loaded, make sure to store them in the .env file in project root and keep them that file from going into source control.
 
@@ -58,7 +58,9 @@ When using clay-model, apps without code modification between Visualforce Remoti
 
 More information about using the proxy can be found in clay-model and clay-model-salesforce-api repositories in 3VOT Profile in Github.
 
+4. CORS
 
+Set the allowed domains on the enviroment variable ORIGINS=*.DOMAIN.com , other domains separated by ','
 
 
 

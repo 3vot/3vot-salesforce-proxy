@@ -43,7 +43,7 @@ function getConnection(req, res){
   return true;
 }
 
-function logout(res,res){
+function logout(req,res){
   req.session.saleforce = false;
   res.send(200);
 }

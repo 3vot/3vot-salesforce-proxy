@@ -1,10 +1,17 @@
 #!/usr/bin/env node
+var dotenv = require('dotenv');
+console.log(process.env.PWD + "/.denv" )
+dotenv._getKeysAndValuesFromEnvFilePath( process.env.PWD + "/.denv"  );
+dotenv._setEnvs();
+
+
+
 var debug = require('debug')("development");
 var app = require('../app');
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
-
+	console.log("runnin")
   debug('Express server listening on port ' + server.address().port);
 });
