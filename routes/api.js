@@ -135,7 +135,7 @@ Api.prototype.getOperation = function(){
   if( objName == "apex" ) action = "apex";
   else if( this.req.query.query ) action = "query";
   else if( objName.indexOf("__c") == 0 ) action = "sobject";
-  else if( ["Account","Opportunity","Contact"].indexOf( objName ) > -1 )  action = "sobject";
+  else if( ["Account","Opportunity","Contact","Task","Case","Contract","Event","Idea","Lead","Note","Order","Product2","Quote","User","Territory"].indexOf( objName ) > -1 )  action = "sobject";
   else action = objName;
   
   return action;
