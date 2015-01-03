@@ -36,20 +36,20 @@ Api.prototype.sobject = function(){
   var action = ""
   var body = this.req.body;
   var id = this.req.params.id;
-  var method = this.req.query.gettify || this.req.route.stack[0].method;
+  var method = this.req.query.gettify || this.req.route.methods;
 
   //For Testing and non-cors Only usage
   if(this.req.query.gettify){ body = this.req.query; delete body.gettify; }
 
   if(id) body.Id = id;
   
-  console.log(method);
+  console.log(this.req.route);
 
-  if(method == "get"){ action = "retrieve"; body= id; }
-  else if(method == "post") action = "create";
+  if(method.get){ action = "retrieve"; body= id; }
+  else if(method.post) action = "create";
   //else if(method == "put" && body.ExternalId ) action = this.req.conn.upsert;
-  else if(method == "put") action = "update";
-  else if(method == "del"){ action = "destroy"; body= id; }
+  else if(method.put ) action = "update";
+  else if(method.del ){ action = "destroy"; body= id; }
 
   this.req.conn.sobject(this.req.params.objectName)[action]( body, function(err, result){
     if(err && method == "get" && JSON.stringify(err).indexOf("NOT_FOUND") > -1) return _this.onError( err, "404", 404 );
