@@ -36,23 +36,23 @@ Api.prototype.sobject = function(){
   var action = ""
   var body = this.req.body;
   var id = this.req.params.id;
-  var method = this.req.query.gettify || this.req.route.methods;
+  var method = this.req.query.gettify || this.req.method;
 
   //For Testing and non-cors Only usage
   if(this.req.query.gettify){ body = this.req.query; delete body.gettify; }
 
   if(id) body.Id = id;
   
-  console.log(this.req);
+  console.log(method);
 
-  if(method.get){ action = "retrieve"; body= id; }
-  else if(method.post) action = "create";
+  if(method == "GET"){ action = "retrieve"; body= id; }
+  else if(method == "POST") action = "create";
   //else if(method == "put" && body.ExternalId ) action = this.req.conn.upsert;
-  else if(method.put ) action = "update";
-  else if(method.del ){ action = "destroy"; body= id; }
+  else if(method == "PUT") action = "update";
+  else if(method == "DEL"){ action = "destroy"; body= id; }
 
   this.req.conn.sobject(this.req.params.objectName)[action]( body, function(err, result){
-    if(err && method == "get" && JSON.stringify(err).indexOf("NOT_FOUND") > -1) return _this.onError( err, "404", 404 );
+    if(err && method == "GET" && JSON.stringify(err).indexOf("NOT_FOUND") > -1) return _this.onError( err, "404", 404 );
     if(err) return _this.onError( err );
 
     delete result.success;
