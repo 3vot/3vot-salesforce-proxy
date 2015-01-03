@@ -43,7 +43,7 @@ Api.prototype.sobject = function(){
 
   if(id) body.Id = id;
   
-  console.log(this.req.route);
+  console.log(this.req);
 
   if(method.get){ action = "retrieve"; body= id; }
   else if(method.post) action = "create";
