@@ -43,6 +43,8 @@ Api.prototype.sobject = function(){
 
   if(id) body.Id = id;
   
+  console.log(method);
+
   if(method == "get"){ action = "retrieve"; body= id; }
   else if(method == "post") action = "create";
   //else if(method == "put" && body.ExternalId ) action = this.req.conn.upsert;
