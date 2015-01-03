@@ -49,7 +49,7 @@ Api.prototype.sobject = function(){
   else if(method == "POST") action = "create";
   //else if(method == "put" && body.ExternalId ) action = this.req.conn.upsert;
   else if(method == "PUT") action = "update";
-  else if(method == "DEL"){ action = "destroy"; body= id; }
+  else if(method == "DELETE"){ action = "destroy"; body= id; }
 
   this.req.conn.sobject(this.req.params.objectName)[action]( body, function(err, result){
     if(err && method == "GET" && JSON.stringify(err).indexOf("NOT_FOUND") > -1) return _this.onError( err, "404", 404 );
