@@ -1,6 +1,6 @@
 {
   "name": "3vot Salesforce Proxy",
-  "description": "Salesforce REST Proxy - to work with Salesforce using normal Ajax Rest models like backbone, spine, etc. Specially designed to work with Clay Model",
+  "description": "Salesforce REST Proxy - Specially designed to work with Clay Model",
   "keywords": [
     "clay",
     "salesforce",
