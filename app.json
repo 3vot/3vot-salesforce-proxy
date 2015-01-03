@@ -1,0 +1,19 @@
+{
+  "name": "3vot Salesforce Proxy",
+  "description": "Salesforce REST Proxy - to work with Salesforce using normal Ajax Rest models like backbone, spine, etc. Specially designed to work with Clay Model",
+  "keywords": [
+    "clay",
+    "salesforce",
+    "proxy",
+    "rest",
+    "javascript"
+  ],
+  "env": {
+    "SALESFORCE_CLIENT_ID": "",
+    "SALESFORCE_CLIENT_SECRET": "",
+    "SALESFORCE_REDIRECT_URL": "https://salesforce-proxy-3vot.herokuapp.com/login/callback",
+    "NODE_ENV": "production",
+    "DEBUG": "production",
+    "ORIGINS": "*.herokuapp.com"
+  }
+}
