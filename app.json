@@ -11,7 +11,7 @@
   "env": {
     "SALESFORCE_CLIENT_ID": "",
     "SALESFORCE_CLIENT_SECRET": "",
-    "SALESFORCE_REDIRECT_URL": "https://salesforce-proxy-3vot.herokuapp.com/login/callback",
+    "SALESFORCE_REDIRECT_URL": "https://xxxxxxxxxxxxxx.herokuapp.com/login/callback",
     "NODE_ENV": "production",
     "DEBUG": "production",
     "ORIGINS": "*.herokuapp.com"
