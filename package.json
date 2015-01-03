@@ -1,6 +1,6 @@
 {
   "name": "3vot-salesforce-proxy",
-  "description": "Salesforce Production NodeJS Proxy Server that translates SF-REST-API into standard REST to be consumed by BackboneJS, SpineJS, Angular, Ember, etc. It includes an OAUTH Authentication Strategy for OAUTH 2.0 Password and Server and Cookie Stateless Session Management for infinite scalability",
+  "description": "A Production Proxy Server written in NodeJS with clustering that translates standard traditional REST to Salesforce Rest API. It makes it easy work with Salesforce Data in Javascript, and includes stateless oauth2 and password based login.",
   "version": "0.2.1",
   "private": false,
   "scripts": {
