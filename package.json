@@ -1,7 +1,7 @@
 {
   "name": "3vot-salesforce-proxy",
   "description": "A Production Proxy Server written in NodeJS with clustering that translates standard traditional REST to Salesforce Rest API. It makes it easy work with Salesforce Data in Javascript, and includes stateless oauth2 and password based login.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": false,
   "scripts": {
     "start": "node ./bin/www"
@@ -19,7 +19,6 @@
     "express-cors": "0.0.3",
     "superagent": "~0.21.0",
     "jsforce": "~1.3.1"
-    
   },
   "author": "roberto@rodriguezartavia.com",
   "repository": "https://github.com/3vot/3vot-salesforce-proxy",
