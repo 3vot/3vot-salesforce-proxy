@@ -6,26 +6,29 @@
 
 Salesforce uses OAUTH 2.0 for authentication and does not provide CORS to connect directly from Web Apps.
 
-More importantly the Salesforce REST API is not designed to be frontend friendly. Most Models and AJAX modules won't work. Salesforce App Developers end up not using models and communicating with Salesforce REST API directly. This approach requires knowledge of APEX and Salesforce, makes App Development much more expensive and breaks M*VC.
+More importantly the Salesforce REST API is not designed to be frontend friendly. Most Models and AJAX modules won't work. Salesforce App Developers end up not using models and communicating with Salesforce REST API directly using anti-paterns. This makes Apps much more expensive, breaks M*VC and are harder to mantain.
 
 ## What
 
-A Production Proxy Server written in NodeJS with clustering that translates standard traditional REST to Salesforce Rest API. It makes it easy work with Salesforce Data in Javascript. 
+A Production Proxy Server written in NodeJS with clustering that translates standard traditional REST to Salesforce Rest API. It makes it easy to work with Salesforce Data in Javascript/HTML5 Apps. 
 
-Developers can simply create object `Account.create({ Name: "Acme" })` - query `Account.query("select id, name from account")` - update and delete 'account.save()' - 'account.delete()'.
+Developers can simply create objects `Account.create({ Name: "Acme" })` - query `Account.query("select id, name from account")` - update and delete 'account.save()' - 'account.delete()'.
 
-This way frontend developers can build Salesforce Apps, reducing costs and improving development speed in several by 3X+.
+This way frontend developers can build HTML5 Salesforce Apps using traditional HTML5 technologies, reducing costs and improving development speed by 10X++
 
-The server includes Login based in oauth2 or password, handles session refresh and it's stateless, so it can be scaled instantly up to infinity.
+The server includes Login based in oauth2 or password, handles session refresh and it's stateless, so it can be scaled instantly up to infinity for use in enterprise organizations.
 
 ## How
 
 Simply use the Heroku Button to get your Proxy Server Running now!
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Deploy from NPM by using the file app.js as or bin/www as node start script.
+1. Create a Salesforce Connected using your server url or xxxx.herokuapp.com
 
-Use the routes in routes/login and routes/api in your own server, making sure you are using the cookie-session NPM module
+2. Setup the Enviroment Variables in the Heroku Button App.
+Make sure to add the domain that will host your app Origin: localhost,*.yourdomain.com, *.3votapp.com
+
+3. Optional: Create a 3VOT App using Clay and Clay Salesforce Receip
 
 ## More
 
@@ -42,25 +45,24 @@ This package is supported by 3VOT Corporation.
 
 $ npm install 3vot-salesforce-proxy
 
-## Setup
-Setup can be somewhat accelerated by using the Heroku button > APP_NAME, then `heroku clone ` and `heroku config:pull`
-
-1. Create a Salesforce Connect App for localhost (localhost:5000) and one for production ( using your server url or xxxx.herokuapp.com )
-
-2. Setup the following ENV Variables file .env and .denv
-SALESFORCE_CLIENT_ID, SALESFORCE_CLIENT_SECRET, SALESFORCE_REDIRECT_URL, NODE_ENV, ORIGINS
-
-Check this gist for a quick format: https://gist.github.com/rodriguezartav/b5ed90528075777d2edd
-
-## Getting Started
+## Advanced Use
 Start the server
 Production `foreman start` - auto loads .env
 Production `./bin/ww` - loads .env 
 Development `./bin/w` - loads .denv
 
+Deploy from NPM by using the file app.js as or bin/www as node start script.
+
+Use the routes in routes/login and routes/api in your own server, making sure you are using the cookie-session NPM module
+
 Point your browser to http://localhost:5000/login , check out /session and /whoami
 
 ## Using from an App
+
+We recommend that you use Clay Model and Clay Model Salesforce Proxy Api https://github.com/3vot/clay-model-salesforce-api. It works out of the box - even includes login.
+
+## On you own
+
 First you must login, point your browser to the /login route make sure to supply and app_url query string variable. This is the URL where the Proxy will redirect after login. You can also hardcode this value as ENV-VARIABLE called SALESFORCE_FINAL_URL
 
 Now make regular HTTP REST API Calls GET,POST,PUT,DEL using OBJECT/ID url's
