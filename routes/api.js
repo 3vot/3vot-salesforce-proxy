@@ -18,12 +18,12 @@ function Api(req, res){
   if(!login.getConnection(req, res)) return;
 
   var api = this.getOperation();
-  if ( !api ) return this.onError({error_code: 21, message: this.req.params.name + " is not available"});
+  if ( !api ) return this.onError({error_code: 21, message: this.req.params.name + " is not implemented in Proxy"});
   
   if( api == "query" ) this.query();
   else if( api == "sobject" ) this.sobject();
   else if( api == "apex" ) this.apex();
-  else return this.onError({error_code: 21, message: api + " is not available"});
+  else return this.onError({error_code: 21, message: api + " is not implemented in Proxy"});
 }
 
 Api.prototype.query = function(){
